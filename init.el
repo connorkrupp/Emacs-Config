@@ -6,9 +6,13 @@
 (setq gc-cons-threshold 100000000)
 (setq inhibit-startup-message t)
 
+(global-set-key [(control -)] 'undo)
+(delete-selection-mode t)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(custom-set-variables
+  '(line-number-mode t))
 
-(defconst demo-packages
+(defconst package-list
   '(anzu
     company
     duplicate-thing
@@ -35,7 +39,7 @@
   (interactive)
   (unless package-archive-contents
     (package-refresh-contents))
-  (dolist (package demo-packages)
+  (dolist (package package-list)
     (unless (package-installed-p package)
       (package-install package))))
 
@@ -146,7 +150,7 @@
 (show-smartparens-global-mode +1)
 (smartparens-global-mode 1)
 
-;; Package: projejctile
+;; Package: projectile
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-enable-caching t)
