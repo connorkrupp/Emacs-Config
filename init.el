@@ -4,7 +4,6 @@
 (package-initialize)
 
 (setq gc-cons-threshold 100000000)
-(setq inhibit-startup-message t)
 
 (global-set-key [(control -)] 'undo)
 (delete-selection-mode t)
