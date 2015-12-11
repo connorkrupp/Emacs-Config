@@ -11,6 +11,8 @@
 (global-set-key [(control -)] 'undo)
 (delete-selection-mode t)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
 (custom-set-variables
   '(line-number-mode t))
 
@@ -23,7 +25,9 @@
 
 (defconst package-list
   '(irony
-		yasnippet))
+    flycheck
+    atom-one-dark-theme
+    yasnippet))
 
 (defun install-packages ()
   "Install all required packages."
@@ -54,6 +58,9 @@
     'irony-completion-at-point-async))
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;; Setup flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Package: yasnippet
 (require 'yasnippet)
