@@ -24,6 +24,7 @@
 (defconst package-list
   '(irony
     flycheck
+    atom-one-dark-theme
     atom-dark-theme
     yasnippet))
 
@@ -38,7 +39,14 @@
 
 (install-packages)
 
-(load-theme 'atom-dark t)
+;; check OS type
+(cond
+ ((string-equal system-type "darwin") ; Mac OS X
+  (progn
+    (load-theme 'atom-dark t)))
+ ((string-equal system-type "gnu/linux") ; linux
+  (progn
+    (load-theme 'atom-one-dark t))))
 
 (add-to-list 'load-path "~/.emacs.d/custom/")
 
