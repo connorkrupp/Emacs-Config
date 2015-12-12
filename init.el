@@ -6,8 +6,6 @@
 (setq gc-cons-threshold 100000000)
 (setq inhibit-startup-message t)
 
-(load-theme 'atom-one-dark t)
-
 (global-set-key [(control -)] 'undo)
 (delete-selection-mode t)
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -26,7 +24,7 @@
 (defconst package-list
   '(irony
     flycheck
-    atom-one-dark-theme
+    atom-dark-theme
     yasnippet))
 
 (defun install-packages ()
@@ -40,6 +38,7 @@
 
 (install-packages)
 
+(load-theme 'atom-dark t)
 
 (add-to-list 'load-path "~/.emacs.d/custom/")
 
