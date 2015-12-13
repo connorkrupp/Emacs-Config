@@ -12,7 +12,14 @@
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 (custom-set-variables
-  '(line-number-mode t))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-minimum-prefix-length 2)
+ '(company-show-numbers t)
+ '(company-tooltip-limit 20)
+ '(line-number-mode t))
 
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
@@ -24,6 +31,9 @@
 (defconst package-list
   '(irony
     flycheck
+    flycheck-irony
+    company
+    company-irony
     atom-one-dark-theme
     atom-dark-theme
     yasnippet))
@@ -68,7 +78,22 @@
 
 ;; Setup flycheck
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(eval-after-load 'flycheck
+  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 ;; Package: yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+(setq company-idle-delay 0)
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
